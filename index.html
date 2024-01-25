@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Haritanın boyutunu ayarlayın */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-purple-800">
+<div class="max-w-sm p-6 border rounded-lg shadow bg-gray-800 border-gray-700 ml-auto mr-auto mt-20 max-sm:m-10">
+    <p class="text-2xl mx-auto mt-5 mb-5 text-white">Login</p>
+    <form class="max-w-sm mx-auto mt-5" method="post" action="/login">
+        <div class="mb-5">
+            <label for="username" class="block mb-2 text-sm font-medium text-white">Your User ID</label>
+            <input type="text" id="username" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User ID" required>
+        </div>
+        <div class="mb-5">
+            <label for="password" class="block mb-2 text-sm font-medium text-white">Your password</label>
+            <input type="password" id="password"  name="password" placeholder="Your Password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <button type="submit" class="text-white bg-purple-800 hover:bg-purple-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

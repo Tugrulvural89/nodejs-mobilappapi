@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Haritanın boyutunu ayarlayın */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-purple-900">
+<div class="container mx-auto px-4">
+    <nav class="bg-gray-200 p-4 rounded-md">
+        <div class="grid grid-cols-6 gap-4 ml-5">
+            <div class="col-span-1 flex justify-start items-center">
+                <a href="/" class="text-purple-800 hover:text-blue-700 max-sm:text-xs">Home</a>
+            </div>
+            <div class="col-span-1 flex justify-center items-center">
+                <a href="/map" class="text-purple-800 hover:text-blue-700 max-sm:text-xs">Find Me</a>
+            </div>
+            <div class="col-span-1 flex justify-end items-center">
+                <a href="/" class="text-purple-800 hover:text-blue-700 max-sm:text-xs">App Store</a>
+            </div>
+
+            <div class="col-span-1 flex justify-end items-center">
+                <a href="/" class="text-purple-800 hover:text-blue-700 max-sm:text-xs">Play Store</a>
+            </div>
+            <div class="col-span-1 flex justify-end items-center">
+                <a href="/legal" class="text-purple-800 hover:text-blue-700 max-sm:text-xs">Legal</a>
+            </div>
+            <div class="col-span-1 flex justify-end items-center">
+                <a href="/logout" class="text-purple-800 hover:text-blue-700 max-sm:text-xs">Logout</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="shadow-2xl rounded-lg w-3/6 max-sm:w-3/4 mx-auto">
+    <div id="loader" class="flex items-center justify-center h-full absolute w-full top-0 left-0 bg-white opacity-80 z-50">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
+        <p class="text-purple-800 text-sm">Please refresh page</p>
+    </div>
+
+    <!-- Harita için konteyner -->
+    <div id="map" class="mx-auto mt-10 mb-10 p-5  max-sm:p-1 rounded-2xl"></div>
+</div>
+<!-- Google Maps JavaScript API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAVhGHddqAhmNMeCRV--hvDE5xF1HLUPc&callback=initMap" async defer></script>
+<script>
+    function initMap() {
+        // Show the loader while initializing the map
+        document.getElementById('loader').classList.remove('hidden');
+
+        // Rastgele bir konum oluştur
+        var randomLocation = {lat: 40.2603693, lng: 28.9439881};
+
+        // Haritayı başlat
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: randomLocation,
+        });
+
+        // İşaretçiyi haritaya yerleştir
+        var marker = new google.maps.Marker({
+            position: randomLocation,
+            map: map
+        });
+
+        // Hide the loader when the map is fully initialized
+        document.getElementById('loader').classList.add('hidden');
+    }
+
+</script>
+</body>
+</html>

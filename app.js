@@ -48,26 +48,35 @@ app.get('/login', (req, res) => {
 dotenv.config(); // .env dosyasını yükle
 
 const SECRET_KEY = process.env.SECRET_KEY;
-
+console.log(SECRET_KEY);
 
 // create user account through mobil app
 app.post('/createAccount', (req, res) => {
-    const { UserId, UserPass, SecretKey } = req.headers;
-
-    if (SecretKey !== SECRET_KEY) {
+    const secretKey = req.headers['secretkey'];
+    const userId = req.headers['UserId'];
+    const UserPass = req.headers['UserPass'];
+    if (secretKey !== SECRET_KEY) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
-    // Header'dan UserId ve UserPass al
-    const userId = req.headers['userid'];
-    const userPass = req.headers['userpass'];
 
     // İsteğin body'sinden diğer bilgileri al (örneğin, location)
     const location = req.body.location; // assuming location is an object with lat and long
 
     // Veritabanı mantığını buraya ekleyin
     // ...
-
-    res.status(200).send(`Account created successfully for userId: ${userId}`);
+    const databaseStatus = true;
+    try {
+        // Hesap oluşturma işlemleri...
+        if (databaseStatus) {
+            return res.status(201).json({ message: 'Account created successfully' });
+        } else {
+            // Beklenmeyen bir durum, hesap oluşturulamadı
+            return res.status(500).json({ message: 'Could not create account due to an internal error' });
+        }
+    } catch (error) {
+        console.error('Account creation failed:', error);
+        return res.status(500).json({ message: 'Could not create account due to an internal error' });
+    }
 });
 
 // logout
@@ -79,8 +88,8 @@ app.get('/logout', (req, res) => {
 
 //check user already exist through mobil app
 app.post('/checkUserExists', (req, res) => {
-    const { SecretKey } = req.headers;
-    if (SecretKey !== SECRET_KEY) {
+    const secretKey = req.headers['secretkey'];
+    if (secretKey !== SECRET_KEY) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
     const userId = req.body.userId;
